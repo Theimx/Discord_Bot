@@ -1,6 +1,6 @@
 p {
     
-    color: blue;
+    color: wheat;
 }
 
 body {
@@ -10,3 +10,8 @@ body {
     text-align: left;
     padding: 50px;
 }
+
+img.image-resize {
+    width: 15px; /* L'image prendra 50% de la largeur de son conteneur parent */
+    height: auto; /* La hauteur s'ajustera automatiquement */
+  }
