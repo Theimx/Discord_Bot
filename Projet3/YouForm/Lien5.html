@@ -3,16 +3,138 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Page Fond Uni</title>
+    <title>Menu Principal</title>
     <style>
-        /* Appliquer un fond uni à toute la page */
+        /* Style de base pour la mise en page */
         body, html {
+            background-color: rgb(114, 10, 134);
             height: 100%;
             margin: 0;
-            background-color: rgb(114, 10, 134);
+            font-family: Arial, sans-serif;
+            display: flex;
+            overflow: hidden;
+        }
+
+        /* Barre latérale ajustable */
+        .sidebar {
+            width: 150px;
+            min-width: 100px;
+            max-width: 170px;
+            background-color: #333;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            padding: 20px;
+            box-shadow: 2px 0 5px rgba(0, 0, 0, 0.2);
+            position: relative;
+        }
+
+        /* Zone de hitbox invisible pour l'ajustement */
+        .hitbox {
+            width: 35px;
+            cursor: ew-resize;
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            background-color: transparent; /* Hitbox invisible */
+        }
+
+        /* Nom d'utilisateur en haut de la barre latérale */
+        .sidebar .username {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .sidebar .username a {
+            color: #4da6ff;
+            text-decoration: none;
+        }
+
+        .sidebar .username a:hover {
+            text-decoration: underline;
+        }
+
+        /* Liste de liens */
+        .sidebar .link-list {
+            list-style-type: none;
+            padding: 0;
+            margin-top: 20px;
+        }
+
+        .sidebar .link-list li {
+            margin-bottom: 10px;
+        }
+
+        .sidebar .link-list a {
+            color: white;
+            text-decoration: none;
+            font-size: 1rem;
+        }
+
+        .sidebar .link-list a:hover {
+            color: #4da6ff;
+        }
+
+        /* Contenu principal */
+        .content {
+            flex-grow: 1;
+            background-color: rgb(114, 10, 134); /* Maintenir la même couleur de fond */
+            padding: 50px;
+            text-align: center;
+            color: white; /* Couleur du texte du contenu */
         }
     </style>
 </head>
 <body>
+
+<div class="sidebar" id="sidebar">
+    <div class="username">
+        <a href="User.html">admin</a>
+    </div>
+    <ul class="link-list">
+        <li><a href="menu.html">Home</a></li>
+        <li><a href="Lien1.html">Lien 1</a></li>
+        <li><a href="Lien2.html">Lien 2</a></li>
+        <li><a href="Lien3.html">Lien 3</a></li>
+        <li><a href="Lien4.html">Lien 4</a></li>
+        <li><a href="Lien5.html">Lien 5</a></li>
+    </ul>
+    <div class="hitbox" id="hitbox"></div>
+</div>
+
+<div class="content">
+    <h1>Bienvenue au Menu Liens 5</h1>
+
+</div>
+
+<script>
+    // JavaScript pour rendre la barre latérale ajustable
+    const sidebar = document.getElementById("sidebar");
+    const hitbox = document.getElementById("hitbox");
+
+    hitbox.addEventListener("mousedown", (e) => {
+        e.preventDefault();
+
+        // Fonction qui ajuste la largeur lors du déplacement de la souris
+        const onMouseMove = (e) => {
+            let newWidth = e.clientX;
+            if (newWidth < 100) newWidth = 100; // largeur minimum
+            if (newWidth > 170) newWidth = 170; // largeur maximum
+            sidebar.style.width = newWidth + "px";
+        };
+
+        // Arrête le redimensionnement lors du relâchement de la souris
+        const onMouseUp = () => {
+            document.removeEventListener("mousemove", onMouseMove);
+            document.removeEventListener("mouseup", onMouseUp);
+        };
+
+        document.addEventListener("mousemove", onMouseMove);
+        document.addEventListener("mouseup", onMouseUp);
+    });
+</script>
+
 </body>
 </html>
