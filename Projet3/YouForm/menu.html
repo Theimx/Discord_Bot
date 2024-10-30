@@ -7,6 +7,7 @@
     <style>
         /* Style de base pour la mise en page */
         body, html {
+            background-color: rgb(114, 10, 134);
             height: 100%;
             margin: 0;
             font-family: Arial, sans-serif;
@@ -17,8 +18,8 @@
         /* Barre latérale ajustable */
         .sidebar {
             width: 150px;
-            min-width: 90px;
-            max-width: 270px;
+            min-width: 100px;
+            max-width: 170px;
             background-color: #333;
             color: white;
             display: flex;
@@ -28,15 +29,15 @@
             position: relative;
         }
 
-        /* Barre de redimensionnement */
-        .resizer {
-            width: 5px;
-            background-color: #555;
+        /* Zone de hitbox invisible pour l'ajustement */
+        .hitbox {
+            width: 35px;
             cursor: ew-resize;
             position: absolute;
             top: 0;
             right: 0;
             bottom: 0;
+            background-color: transparent; /* Hitbox invisible */
         }
 
         /* Nom d'utilisateur en haut de la barre latérale */
@@ -80,8 +81,9 @@
         .content {
             flex-grow: 1;
             background-color: rgb(114, 10, 134);
-            padding: 40px;
+            padding: 50px;
             text-align: center;
+            
         }
     </style>
 </head>
@@ -98,7 +100,7 @@
         <li><a href="Lien4.html">Lien 4</a></li>
         <li><a href="Lien5.html">Lien 5</a></li>
     </ul>
-    <div class="resizer" id="resizer"></div>
+    <div class="hitbox" id="hitbox"></div>
 </div>
 
 <div class="content">
@@ -109,9 +111,9 @@
 <script>
     // JavaScript pour rendre la barre latérale ajustable
     const sidebar = document.getElementById("sidebar");
-    const resizer = document.getElementById("resizer");
+    const hitbox = document.getElementById("hitbox");
 
-    resizer.addEventListener("mousedown", (e) => {
+    hitbox.addEventListener("mousedown", (e) => {
         e.preventDefault();
 
         // Fonction qui ajuste la largeur lors du déplacement de la souris
